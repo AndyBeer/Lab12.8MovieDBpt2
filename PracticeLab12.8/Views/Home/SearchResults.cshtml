@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Movie>
+
+<h2>Search Results:</h2>
+@if (Model.ToList().Count != 0)
+{
+@foreach (Movie m in Model)
+{
+    <div style="border: solid 2px black">
+        <p>Title: @m.Title</p>
+        <p>Movie ID: @m.ID</p>
+        <p>Genre: @m.Genre</p>
+        <p>Year: @m.Year</p>
+        <p>Run Time: @m.RunTime</p>
+        <a asp-action="Details" asp-controller="Home" asp-route-ID="@m.ID"><p>Details</p></a>
+        @*asp-route-varName - allows us to pass parameters into a link and it should match the parameter
+            in the action you intend to call.  Since the action requires an ID, we need to pass it in via
+            a link but will grab the ID from the property of the returned object.
+            NOTE: you cannot do this with an object, but can be done on properties of an object.*@
+        <a asp-action="Delete" asp-controller="Home" asp-route-ID="@m.ID"><p>Delete</p></a>
+        <a asp-action="Update" asp-controller="Home" asp-route-ID="@m.ID"><p>Update</p></a>
+    </div>
+}
+
+
+
+}
+else 
+{
+<h2>Sorry, no movies were found.  Please check spelling and search again.</h2>
+
+<h4>If you would like to add a movie, please <a asp-action="">Click Here</a> to add a movie to the Database.</h4>
+}
+
+

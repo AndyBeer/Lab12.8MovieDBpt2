@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Movie>
+
+    <a asp-action="Create" asp-controller="Home"><p>Create a New Movie</p></a>
+
+@foreach (Movie m in Model)
+    { 
+        <div style="border: solid 2px black">
+            <p>Title: @m.Title</p>
+            <p>Movie ID: @m.ID</p>
+            <p>Genre: @m.Genre</p>
+            <p>Year: @m.Year</p>
+            <p>Run Time: @m.RunTime</p>
+            <a asp-action="Details" asp-controller="Home" asp-route-ID="@m.ID"><p>Details</p></a>
+    @*asp-route-varName - allows us to pass parameters into a link and it should match the parameter
+        in the action you intend to call.  Since the action requires an ID, we need to pass it in via
+        a link but will grab the ID from the property of the returned object.
+        NOTE: you cannot do this with an object, but can be done on properties of an object.*@
+            <a asp-action="Delete" asp-controller="Home" asp-route-ID="@m.ID"><p>Delete</p></a>
+            <a asp-action="Update" asp-controller="Home" asp-route-ID="@m.ID"><p>Update</p></a>
+        </div>
+    <br />
+    }
+

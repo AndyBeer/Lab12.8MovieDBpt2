@@ -1,0 +1,32 @@
+﻿@model Movie
+
+<h2>Create a New Movie</h2>
+@*We copied thet Update view and changed some things around
+    - mainly removed references to a movie object like values, since it doesnt exist yet
+    - Also STILL passing in the @model Movie, because you still want access to those properties*@
+
+<form asp-action="Create" method="post">
+
+    <label asp-for="Title" class="control-label"></label>
+    <input asp-for="Title" class="form-control" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+
+
+    <label asp-for="Genre" class="control-label"></label> @*Could create a dropdown here but w/e*@
+    <input asp-for="Genre" class="form-control" />
+    <span asp-validation-for="Genre" class="text-danger"></span>
+
+    <label asp-for="Year" class="control-label"></label>
+    <input asp-for="Year" class="form-control" />
+    <span asp-validation-for="Year" class="text-danger"></span>
+
+    <label asp-for="RunTime" class="control-label"></label>
+    <input asp-for="RunTime" class="form-control" />
+    <span asp-validation-for="RunTime" class="text-danger"></span>
+
+    <input type="submit" />
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
